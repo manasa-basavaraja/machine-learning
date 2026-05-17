@@ -1,0 +1,42 @@
+seed: 42
+
+data:
+  source: synthetic        # synthetic | csv
+  csv_path: data/telco_churn.csv
+  target: churn
+  test_size: 0.2
+  synthetic:
+    n_samples: 5000
+    churn_rate: 0.27
+
+features:
+  numeric:
+    - tenure_months
+    - monthly_charges
+    - total_charges
+    - num_support_tickets
+  categorical:
+    - contract_type
+    - payment_method
+    - internet_service
+    - has_phone_service
+    - paperless_billing
+
+model:
+  name: gradient_boosting   # logistic_regression | random_forest | gradient_boosting
+
+tuning:
+  enabled: true
+  n_trials: 25
+  timeout_seconds: 120
+  scoring: roc_auc
+
+evaluation:
+  cv_folds: 5
+  decision_threshold: 0.5
+
+artifacts:
+  dir: artifacts
+  model_filename: model.joblib
+  metrics_filename: metrics.json
+  log_filename: train.log
