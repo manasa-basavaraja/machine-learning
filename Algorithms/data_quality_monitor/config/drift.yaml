@@ -1,0 +1,39 @@
+binning:
+  numeric_bins: 10
+  smoothing_epsilon: 1.0e-4
+
+features:
+  numeric:
+    - name: tenure_months
+      psi_warn: 0.10
+      psi_fail: 0.25
+      ks_fail: 0.10
+    - name: monthly_charges
+      psi_warn: 0.10
+      psi_fail: 0.25
+      ks_fail: 0.10
+    - name: total_charges
+      psi_warn: 0.10
+      psi_fail: 0.25
+      ks_fail: 0.10
+    - name: num_support_tickets
+      psi_warn: 0.10
+      psi_fail: 0.25
+      ks_fail: 0.15
+
+  categorical:
+    - name: contract_type
+      psi_warn: 0.10
+      psi_fail: 0.25
+    - name: payment_method
+      psi_warn: 0.10
+      psi_fail: 0.25
+    - name: internet_service
+      psi_warn: 0.10
+      psi_fail: 0.25
+    - name: has_phone_service
+      psi_warn: 0.10
+      psi_fail: 0.25
+    - name: paperless_billing
+      psi_warn: 0.10
+      psi_fail: 0.25
