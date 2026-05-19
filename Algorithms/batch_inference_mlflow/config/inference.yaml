@@ -1,0 +1,22 @@
+model:
+  path: ../customer_churn_pipeline/artifacts/model.joblib
+
+input:
+  path: data/new_customers.csv
+  chunk_size: 1000
+  id_column: customer_id          # included in output if present; not required
+  drop_columns:                   # removed before scoring if present
+    - churn
+
+output:
+  dir: artifacts/predictions
+  sample_size: 100                # rows written to sample_predictions.csv
+
+prediction:
+  threshold: 0.5
+
+tracking:
+  enabled: true
+  experiment_name: churn-batch-inference
+  tracking_uri: null              # null -> local ./mlruns
+  run_name_prefix: batch
