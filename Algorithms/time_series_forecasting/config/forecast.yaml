@@ -1,0 +1,45 @@
+seed: 42
+
+data:
+  source: synthetic
+  csv_path: data/series.csv
+  date_column: date
+  value_column: y
+  freq: D
+  synthetic:
+    n_days: 730
+    trend: 0.02
+    weekly_amplitude: 8.0
+    yearly_amplitude: 12.0
+    noise_std: 2.0
+    baseline: 50.0
+
+features:
+  lags: [1, 7, 14, 28]
+  rolling_means: [7, 14, 28]
+  rolling_stds: [7, 28]
+  calendar: true
+  fourier_seasonality:
+    yearly: 3
+    weekly: 2
+
+model:
+  name: ridge
+  params:
+    alpha: 1.0
+  season_length: 7
+  ma_window: 7
+
+backtest:
+  initial_train_size: 365
+  horizon: 14
+  step: 7
+
+forecast:
+  horizon: 28
+
+artifacts:
+  dir: artifacts
+  metrics_filename: backtest_metrics.json
+  forecast_filename: forecast.csv
+  summary_filename: run_summary.json
